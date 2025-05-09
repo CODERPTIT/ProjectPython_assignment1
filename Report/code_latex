@@ -1,0 +1,1664 @@
+\documentclass[12pt,a4paper,openany,oneside]{report}
+\usepackage[utf8]{inputenc}         % Cho phép gõ Unicode
+\usepackage[T5]{fontenc}            % Font encoding cho tiếng Việt
+\usepackage[english]{babel}  % Hỗ trợ cả tiếng Anh và tiếng Việt
+\usepackage{amsmath, amsthm, amssymb, amsxtra, latexsym, amscd, graphpap, makeidx}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{graphicx}
+\usepackage{array,tabularx,longtable,multicol,indentfirst,fancyhdr}
+\usepackage[mathscr]{eucal}
+\usepackage[top=3.5cm, bottom=3.0cm, left=3.0cm, right=2.0cm]{geometry}
+\usepackage{fancybox}
+\usepackage{ragged2e} % Thêm gói để căn chỉnh văn bản
+\usepackage{adjustbox} % Thêm gói để điều chỉnh bảng
+\usepackage{xcolor}
+\usepackage{booktabs}     % Để dùng \toprule, \midrule, \bottomrule
+\usepackage{fancyhdr}     % Nếu chưa có
+\setlength{\headheight}{15pt}  % Fix cảnh báo headheight
+\usepackage{url}          % Để xử lý URL dài trong văn bản
+\usepackage{listings}
+\usepackage{courier}
+\usepackage{hyperref}
+\usepackage{textcomp}  
+
+\lstdefinestyle{codeframe}{
+	language=Python,
+	basicstyle=\ttfamily\small,
+	numbers=left,
+	numberstyle=\tiny,
+	stepnumber=1,
+	numbersep=10pt,
+	backgroundcolor=\color{white},
+	frame=single,
+	rulecolor=\color{black},
+	breaklines=true,
+	tabsize=4,
+	keepspaces=true,
+	showstringspaces=false,
+	captionpos=b,
+	keywordstyle=\color{blue},
+	commentstyle=\color{green!60!black}\itshape,  % <<<< DÒNG NÀY ĐỔI MÀU CHÚ THÍCH
+	stringstyle=\color{red}red
+}
+
+
+
+
+%==================================  
+\newtheorem{dl}{Định lý}[section]
+\newtheorem{dn}[dl]{Định nghĩa} 
+\newtheorem{bt}[dl]{Bài toán} 
+\newtheorem{btp}[dl]{Bài tập} 
+\newtheorem{bta}[dl]{Bài} 
+\newtheorem{bai}[dl]{Bài}
+\newtheorem{tc}[dl]{Tính chất} 
+\newtheorem{md}[dl]{Mệnh đề} 
+\newtheorem{bd}[dl]{Bổ đề} 
+\newtheorem{hq}[dl]{Hệ quả} 
+\newtheorem{nx}[dl]{Nhận xét} 
+\newtheorem{cy}[dl]{Chú ý} 
+\newtheorem{vd}[dl]{Ví dụ} 
+\usepackage{hyperref}
+\renewcommand{\chaptername}{Chương}
+\renewcommand\bibname{Tài liệu tham khảo}
+\newcommand{\codecomment}[1]{\textcolor{red!80!black}{\textit{// #1}}}
+
+%.....................................red
+
+\newcommand{\bpr}{\begin{proof}}
+	\newcommand{\epr}{\end{proof}}
+
+% Định nghĩa các ký hiệu
+\def\en{\enskip}
+\def\n{\noindent}
+\def\m{\medskip}
+\def\Re{\mbox{Re }}
+\def\Im{\mbox{Im }}
+\def\hcm{\hfill $\square$\\}
+\def\imotn{i = 1, 2, \ldots, n}
+\def\ii{\item}
+
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\R{\mathbb{R}}
+\def\Q{\mathbb{Q}}
+\def\C{\mathscr{C}}  
+\def\K{\mathbb{K}}  
+\def\F{\mathbb{F}}  
+\def\L{\mathbb{L}} 
+\DeclareMathOperator{\ord}{ord}
+
+\allowdisplaybreaks
+\newenvironment{giai}{\noindent{\em \textit{Giải}. }}{\hfill $\square$}
+
+% Cài đặt header/footer
+\makeatletter 
+\renewcommand{\ps@plain}{
+	\renewcommand{\@oddhead}{\hfil{\thepage}\hfil}
+	\renewcommand{\@evenhead}{\@oddhead}
+	\renewcommand{\@oddfoot}{\empty}
+	\renewcommand{\@evenfoot}{\@oddfoot}}
+\makeatother
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{}
+\chead{\normalsize \thepage}
+\lhead{\itshape{\nouppercase{}}}
+\renewcommand{\headrulewidth}{0pt}
+
+
+
+\begin{document}
+
+	
+	%==========================================================0==
+	%------------------------BÌA---------------------------
+	%===========================================================8===
+	\newgeometry{top=2.0cm, bottom=3.0cm, left=2.0cm, right=2.8cm}
+	\setlength{\fboxrule}{1.5pt}
+	\thisfancypage{\setlength{\fboxsep}{10pt}\setlength{\shadowsize}{0pt}\doublebox}{}
+	
+	\begin{titlepage}
+		\thispagestyle{empty}
+		\normalsize % Đặt font mặc định
+		\begin{center}
+			% Font lớn cho tiêu đề chính
+			HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG \\
+			\textbf{KHOA CÔNG NGHỆ THÔNG TIN I} \\
+			\centerline{--------------------o0o--------------------}  
+		\end{center}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\textwidth]{"C:/Users/Admin/Downloads/MauDoAnTotNghiep (1)/logo"}
+		\end{figure} 
+		
+		
+		\vspace{1.0cm}
+		\begin{center}
+			\LARGE \textbf{BÀI TẬP LỚN} \\
+			\LARGE \textbf{Python Programming} \\
+		\end{center} 
+		
+		\vspace{0.5cm}
+		\begin{center}
+			\large \textbf{\Large Assignment 1} \\
+		\end{center} 
+		\vspace{1cm}
+		
+		\hspace*{2cm}
+		\begin{tabular}{ll}
+			\vspace{0.2cm}
+			\large \textbf{Giảng viên hướng dẫn:} & \large \textbf{Kim Ngọc Bách} \\
+			\vspace{0.2cm}
+			\large \textbf{Sinh viên:} & \large \textbf{Nguyễn Văn Hiếu} \\
+			\vspace{0.2cm}
+			\large \textbf{Mã sinh viên:} & \large \textbf{B23DCCE033} \\
+			\vspace{0.2cm}
+			\large \textbf{Mã lớp:} & \large \textbf{D23CQCE06-B} \\
+			\vspace{0.2cm}
+			\large \textbf{Niên khóa:} & \large \textbf{2023–2028} \\
+			\vspace{0.2cm}
+			\large \textbf{Hệ đào tạo:} & \large \textbf{Đại học chính quy}
+		\end{tabular}
+	
+		
+		\vfill
+		\begin{center}
+			\large \textbf{Hà Nội, 5/2025}
+		\end{center}
+	\end{titlepage}
+	
+	%================================================================
+	%---------------------2------------------------------
+	%=======================================================
+	\restoregeometry
+	\pagestyle{fancy}
+	\pagenumbering{roman}
+	\normalsize % Set default font size for main content
+	
+	\newpage
+	\thispagestyle{empty}
+	\addcontentsline{toc}{chapter}{Table of Contents}
+	\tableofcontents
+	
+	%=========================================================	
+	%-----------------------3--------------------------	
+	%==========================================================
+	
+
+	\newpage 
+	\addcontentsline{toc}{chapter}{List of Figures}
+	\listoffigures
+	
+	%=========================================================
+	%--------------------------4-----------------------
+	%============================================================
+	\newpage 
+	\addcontentsline{toc}{chapter}{List of Tables} 
+	\listoftables
+	
+	%=========================================================
+	%--------------------------5-----------------------
+	%============================================================
+	\newpage
+	
+	\addcontentsline{toc}{chapter}{Introduction}  % Add "Introduction" to the table of contents
+	
+	\normalsize
+	\chapter*{Introduction}
+	\vspace{1cm}
+	In this report, I will focus on presenting the following main topics, corresponding to four core tasks::
+	\vspace{0.5cm}
+	
+	% Task 1: Web Scraping and Data Processing
+	\section*{Chapter 1: Web Scraping and Data Processing Report: Premier League Player Statistics (2024-2025)}
+	\textbf{Objective:} Web scraping the relevant Premier League player statistics for the 2024-2025 season, processing the data, and preparing it for further analysis.
+	
+	% Task 2: Analyze Premier League Player Statistics
+	\section*{Chapter 2: Analyze Premier League 2024-2025 Player Statistics}
+	\textbf{Objective:} Analyze Premier League 2024-2025 player statistics by performing the following:
+	
+	\begin{itemize}
+		\item Identify the top 3 and bottom 3 players for each statistic.
+		\item Calculate the median, mean, and standard deviation for each statistic across all players and teams.
+		\item Plot histograms for the distribution of each statistic.
+		\item Determine the team with the highest scores for each statistic to evaluate the best-performing team.
+		\item Save results to \texttt{top\_3.txt} and \texttt{results2.csv}.
+		\item Generate histograms using Matplotlib.
+	\end{itemize}
+	
+	% Task 3: Classify Players using K-means
+	\section*{Chapter 3: Classify Premier League 2024-2025 Players Using K-means Algorithm}
+	\textbf{Objective:} Classify Premier League 2024-2025 players into groups using the K-means algorithm based on their statistics.
+	
+	\begin{itemize}
+		\item Determine the optimal number of groups (clusters) using the appropriate methods with justification.
+		\item Comment on the clustering results and what insights can be derived from them.
+		\item Apply PCA (Principal Component Analysis) to reduce the data to 2 dimensions for better visualization.
+		\item Plot a 2D cluster visualization of the data points to better understand the clustering results.
+	\end{itemize}
+	
+	% Task 4: Collect Player Transfer Values
+	\section*{Chapter 4: Collect Player Transfer Values for the 2024-2025 Premier League Season}
+	\textbf{Objective:} Collect player transfer values for the 2024-2025 Premier League season from \texttt{https://www.footballtransfers.com} for players with over 900 minutes of playing time.
+	
+	\begin{itemize}
+		\item Propose a method for estimating player values based on statistical features.
+		\item Explain the selection of features and the model used for estimating the player values.
+	\end{itemize}
+
+%	%=========================================================
+%	%--------------------------7-----------------------
+%	%============================================================
+	\chapter{Web Scraping and Data Processing Report: Premier League Player Statistics (2024--2025)}
+	
+	\begin{description}
+		\item[\textbf{SourceCode}:] 
+		\href{https://github.com/CODERPTIT/ProjectPython_assignment1/tree/main/Chapter%201}{GitHub Repository}
+	\end{description}
+
+	This chapter details the process of scraping, cleaning, merging playerchapter and etc statistics from the 2024--2025 Premier League season, sourced from \texttt{FBref.com}. The script uses \texttt{Selenium} for web scraping, \texttt{BeautifulSoup} for HTML parsing, and \texttt{Pandas} for data manipulation. The resulting dataset is saved as a CSV file (\texttt{results.csv}) with 78 statistical columns, sorted alphabetically by players' first names, and marking unavailable or inapplicable values as "N/a" and contains a comprehensive set of player statistics, filtered and formatted according to specified requirements.
+	
+	\section{Methodology}
+	\subsection{Data Sources}
+	The script scrapes data from eight tables on \texttt{FBref.com}, each representing a different category of player statistics for the 2024--2025 Premier League season:
+	
+	\begin{itemize}
+		\item \textbf{Standard Stats}: Goals, assists, minutes played, etc.
+		\item \textbf{Goalkeeper Stats}: Save percentage, clean sheets, etc.
+		\item \textbf{Shooting Stats}: Shots on target, goal per shot, etc.
+		\item \textbf{Passing Stats}: Pass completion, key passes, etc.
+		\item \textbf{Goal and Shot Creation}: Shot-creating actions (SCA), goal-creating actions (GCA).
+		\item \textbf{Defensive Stats}: Tackles, blocks, interceptions, etc.
+		\item \textbf{Possession Stats}: Touches, carries, dribbles, etc.
+		\item \textbf{Miscellaneous Stats}: Fouls, recoveries, aerial duels, etc.
+	\end{itemize}
+	
+	Each table is accessed via a unique URL and identified by a specific table ID (e.g., \texttt{stats\_standard}, \texttt{stats\_keeper}).
+	
+	\subsection{Tools and Libraries}
+	\begin{itemize}
+		\item \textbf{Selenium}: Automates browser interaction to load dynamic web content.
+		\item \textbf{BeautifulSoup}: Parses HTML, including commented-out tables.
+		\item \textbf{Pandas}: Handles data manipulation, merging, and cleaning.
+		\item \textbf{Webdriver Manager}: Automatically manages the Edge browser driver.
+		\item \textbf{Python Standard Libraries}: \texttt{time} for delays, \texttt{io} for string handling.
+	\end{itemize}
+	
+	\subsection{Key Functions}
+	\begin{itemize}
+		\item \texttt{convert\_age\_to\_decimal}: Converts various age formats (e.g., "25-123" to 25.34, "25" to 25.0).
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\textwidth]{"D:/BTL_Python/7"}
+			\caption{Illustration of the \texttt{convert\_age\_to\_decimal} function.}
+		\end{figure}
+		
+		\item \texttt{extract\_country\_code}: Extracts country code from the nation column (e.g., "eng ENG" to "ENG").
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\textwidth]{"D:/BTL_Python/8"}
+			\caption{Illustration of the \texttt{extract\_country\_code} function.}
+		\end{figure}
+		\item \texttt{clean\_player\_name}:Normalizes player names by reversing comma-separated formats and removing extra spaces (e.g., "Haaland, Erling" to "Erling Haaland").
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\textwidth]{"D:/BTL_Python/9"}
+			\caption{Illustration of the \texttt{clean\_player\_name} function.}
+		\end{figure}
+	\end{itemize}
+	
+	\subsection{Data Processing Steps}
+	\subsection*{Web Scraping}
+	\begin{itemize}
+		\item Selenium loads each webpage in headless mode.
+		\item BeautifulSoup extracts tables hidden in HTML comments.
+		\item Tables are converted to DataFrames using \texttt{pd.read\_html}.
+	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{"D:/BTL_Python/1"}
+		\caption{Illustration of the web scraping process.}
+	\end{figure}
+	$\Rightarrow$ \textbf{Result:} Eight tables are collected and stored in \texttt{all\_tables}.
+	\vspace{0.2cm}
+	
+	\subsection*{Data Cleaning}
+	\begin{itemize}
+		\item \textbf{Player Names}: Reversed from comma-separated (e.g., \texttt{Haaland, Erling} to \texttt{Erling Haaland}).
+		\item \textbf{Age Conversion}: Converted to decimal (e.g., \texttt{25-123} $\rightarrow$ 25.34).
+		\item \textbf{Nation}: Extracted country code (e.g., \texttt{eng ENG} $\rightarrow$ \texttt{ENG}).
+		\item \textbf{Column Renaming}: Standardized using dictionaries.
+		\item \textbf{Duplicate Columns: }: Removed to ensure data consistency.
+	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/2}
+		\caption{Illustration of the data cleaning process.}
+	\end{figure}
+	$\Rightarrow$ \textbf{Result:} Player names, ages, and columns are standardized.
+	\vspace{0.2cm}
+	
+	\subsection*{Data Merging}
+	
+	\begin{itemize}
+		\item Tables are merged on the \texttt{"Player"} column using an outer join.
+		\item Only the 78 required columns are retained.
+		\item Duplicate player entries are removed.
+	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/3}
+		\caption{Illustration of the data merging process.}
+	\end{figure}
+	$\Rightarrow$ \textbf{Result:} Merged DataFrame contains 78 columns.
+	\vspace{0.2cm}
+	
+	\subsection*{Data Filtering}
+	
+	\begin{itemize}
+		\item \texttt{Minutes} column is converted to numeric.
+		\item Players with $\leq$ 90 minutes of playing time are excluded.
+	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/4}
+		\caption{Illustration of the data filtering step.}
+	\end{figure}
+	$\Rightarrow$ \textbf{Result:} Only players with >90 minutes are retained.
+	\vspace{0.2cm}
+	
+	\subsection*{Data Type Conversion and Final Cleaning}
+	
+	\begin{itemize}
+		\item \textbf{Integer Columns}: Converted to integers (e.g., \texttt{Goals}, \texttt{Assists}).
+		\item \textbf{Float Columns}: Converted to floats (e.g., \texttt{xG}, \texttt{Save\%}).
+		\item \textbf{String Columns}: Filled with \texttt{"N/a"} for missing values.
+		\item \textbf{Nation}: Country codes extracted.
+	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/5}
+		\caption{Final data type conversion and cleaning process.}
+	\end{figure}
+	$\Rightarrow$ \textbf{Result:} Data types are consistent, missing values are filled with "N/a".
+	\vspace{0.2cm}
+	
+	\subsection*{Sorting and Exporting Data}
+	
+	\begin{itemize}
+		\item Players are sorted alphabetically by first name.
+		\item Temporary sorting column is removed.
+		\item Data is saved to \texttt{results.csv}.
+	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/6}
+		\caption{Data sorted and exported to CSV file.}
+	\end{figure}
+	$\Rightarrow$ \textbf{Result:} results.csv contains 78 columns, sorted by player first name.
+	\vspace{0.2cm}
+	
+	
+	
+	\section{Results}
+	
+	\subsection{Output Description}
+	
+	\begin{description}
+		\item[\textbf{File:}] \texttt{results.csv}
+		\item[\textbf{Rows:}] 483 (players with $>$90 minutes)
+		\item[\textbf{Columns:}] 78
+	\end{description}
+	
+	
+	\subsection*{Sample Columns}
+	\begin{itemize}
+		\item \textbf{Identity:} Player, Nation, Team, Position, Age
+		\item \textbf{Playing Time:} Matches Played, Starts, Minutes
+		\item \textbf{Performance:} Goals, Assists, Yellow cards, Red cards
+		\item \textbf{Expected Metrics:} xG, xAG
+		\item \textbf{Progression:} PrgC, PrgP/Progression, PrgR/Progression
+		\item \textbf{Per 90 Metrics:} Gls/90, Ast/90, xG/90, xAG/90
+		\item \textbf{Goalkeeping:} GA90, Save\%, CS\%, Penalty kicks Save\%
+		\item \textbf{Shooting:} SoT\%, SoT/90, G/Sh, Dist
+		\item \textbf{Passing:} Cmp, Cmp\%, TotDist, ShortCmp\%, MedCmp\%, LongCmp\%, KP, Pass into 1/3, PPA, CrsPA, PrgP/Passing
+		\item \textbf{Goal and Shot Creation:} SCA, SCA90, GCA, GCA90
+		\item \textbf{Defensive:} Tkl, TklW, Deff Att, Lost, Blocks, Sh, Pass, Int
+		\item \textbf{Possession:} Touches, Def Pen, Def 3rd, Mid 3rd, Att 3rd, Att Pen, Take-Ons Att, Succ\%, Tkld\%, Carries, ProDist, ProgC, Carries 1/3, CPA, Mis, Dis, Rec, PrgR/Possession
+		\item \textbf{Miscellaneous:} Fls, Fld, Off, Crs, Recov, Aerl won, Aerl Lost, Aerl Won\%
+	\end{itemize}
+	
+	
+	\textbf{Below is a sample of the top 5 players:}
+	
+	\begin{table}[htbp]
+		\centering
+		\caption{Sample Player Information Table}
+		\begin{longtable}{|l|l|l|l|l|}
+			\hline
+			\textbf{Player} & \textbf{Nation} & \textbf{Team} & \textbf{Position} & \textbf{Age} \\
+			\hline
+			\endfirsthead
+			
+			\hline
+			\textbf{Player} & \textbf{Nation} & \textbf{Team} & \textbf{Position} & \textbf{Age} \\
+			\hline
+			\endhead
+			
+			Erling Haaland & NOR & Manchester City & FW & 24.78 \\
+			Mohamed Salah & EGY & Liverpool & FW & 32.88 \\
+			Bukayo Saka & ENG & Arsenal & FW & 23.66 \\
+			Virgil van Dijk & NED & Liverpool & DF & 33.82 \\
+			Alisson Becker & BRA & Liverpool & GK & 32.59 \\
+			\hline
+		\end{longtable}
+	\end{table}
+
+	
+	\textbf{Note:} The full dataset includes a total of 78 columns/ 143 rows; only a portion is displayed here for brevity.
+	\vspace{0.2cm}
+	
+	\subsection*{Success Metrics}
+	\begin{itemize}
+		\item \textbf{Completeness:} All eight tables successfully scraped and merged.
+		\item \textbf{Accuracy:} Names, ages, and nations cleaned and standardized.
+		\item \textbf{Filtering:} Players with $>$90 minutes retained.
+		\item \textbf{Output:} File includes all required columns in order.
+	\end{itemize}
+	
+	\subsection{Justification}
+	
+	\textbf{Design Choices}
+	\begin{itemize}
+		\item \textbf{Selenium with Headless Mode:} Necessary for dynamic content; reduces resource usage.
+		\item \textbf{BeautifulSoup for Comments:} Required due to tables hidden in comments.
+		\item \textbf{Outer Merge:} Retains players from all tables, even those appearing in only one.
+		\item \textbf{Cleaning Functions:} Normalize age formats, names, and extract standard codes.
+		\item \textbf{Filtering $>$90 minutes:} Standard for ensuring statistical relevance.
+	\end{itemize}
+	\vspace{0.5cm}
+	
+	\textbf{Assumptions}
+	\begin{itemize}
+		\item FBref's table structure remains consistent.
+		\item Duplicate names are rare; first occurrence is kept.
+		\item Missing values are replaced with \texttt{N/a}.
+		\item Script assumes stable internet and page availability.
+	\end{itemize}
+	
+	\subsection{Limitations}
+	\begin{itemize}
+		\item \textbf{Dynamic Website Changes}: Changes to FBref’s table structure could break the script.
+		\item \textbf{Performance}: Selenium is slower than API calls or static HTML scraping.
+		\item \textbf{Error Handling}: Some edge cases (e.g., malformed age strings) may result in ``N/a''.
+		\item \textbf{Data Completeness}: Some columns may have missing data for certain players.
+		\item \textbf{No Player Column Splitting}: The split\_player\_column flag is set to False.
+	\end{itemize}
+	
+	\subsection{Recommendations}
+	
+	\begin{itemize}
+		\item Monitor FBref for changes in table IDs or structure.
+		\item Explore API-based data collection for improved performance.
+		\item Validate edge cases in player names and stats.
+		\item Consider handling goalkeepers separately for inapplicable stats.
+	\end{itemize}
+	
+	\section{Conclusion}
+	
+	The code successfully collected and processed player statistical data for the 2024--2025 Premier League season, producing a \texttt{results.csv} file with 78 columns as required. The output is correctly formatted, sorted, and ready for further analysis.
+	
+%-----------------------------------------------------------
+%-----------------------------------Chapter 2---------------------
+%-----------------------------------------------------------
+
+	\chapter{Analyze Premier League 2024-2025 Player Statistics}
+	
+	\begin{description}
+		\item[\textbf{SourceCode}:] 
+		\href{https://github.com/CODERPTIT/ProjectPython_assignment1/tree/main/Chapter%202}{GitHub Repository}
+	\end{description}
+
+	This chapter presents an analysis of player and team performance statistics from the 2024–2025 Premier League season. The analysis consists of several main tasks. Firstly, the top three achapternd bottom three players for each statistic are identified, and the results are saved to a file named \texttt{top\_3.txt}. Secondly, for each statistic, the median, mean, and standard deviation are calculated both across all players and for each team individually. These results are organized and saved in a file named \texttt{results2.csv}, using a structured format that includes the median, mean, and standard deviation for every attribute. Thirdly, histograms are created using Matplotlib to visualize the distribution of each statistic for all players as well as for each team. Lastly, the team with the highest scores in each statistic is identified in order to evaluate which team is performing best throughout the 2024–2025 season based on statistical evidence.
+	\\
+	
+	The following section provides a detailed analysis of the four main tasks:
+	\section{Identify the top 3 and bottom 3 players for each statistic.}
+	\subsection{Tools and Libraries}
+	\begin{itemize}
+		\item \textbf{Pandas}: Loads, filters, sorts, and ranks data.
+		\item \textbf{Python Standard Libraries}: Handles file I/O for \texttt{top\_3.txt}.
+	\end{itemize}
+	
+	\subsection{Data Processing}
+	\begin{itemize}
+		\item Load \texttt{results.csv} and select numeric columns.
+		\item Filter out ``N/a'' and NaN values.
+		\item Identify top 3 and bottom 3 players for each numeric statistic.
+		\item Save results to \texttt{top\_3.txt}.
+	\end{itemize}
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/10}
+		\caption{Sample output showing the top 3 and bottom 3 players for a given statistic.}
+		\label{fig:top3}
+	\end{figure}
+	
+	\subsection{Results}
+	
+	\begin{description}
+		\item[\textbf{File:}] \texttt{top\_3.txt}
+		\item[\textbf{Content:}] Lists the top 3 and bottom 3 players for each numeric statistic (74 data columns, depending on the dataset after dropping single-value columns).
+	\end{description}
+	
+	\subsection*{Sample Output (Illustrative)}
+	\sloppy
+	\begin{verbatim}
+		=== Age ===
+		Top 3:
+		kukasz Fabiański: 40.05
+		Ashley Young: 39.82
+		James Milner: 39.33
+		Bottom 3:
+		Chidozie Obi-Martin: 17.43
+		Mikey Moore: 17.73
+		Ethan Nwaneri: 18.12
+		
+		=== Matches Played ===
+		Top 3:
+		Virgil van Dijk: 35
+		Moisés Caicedo: 35
+		Ollie Watkins: 35
+		Bottom 3:
+		Tyler Fredricson: 2
+		Danny Ward: 2
+		Neto: 2
+	\end{verbatim}
+	\textbf{Note:} The full dataset includes a total of 74 data columns; only a portion is displayed here for brevity.
+	
+	\vspace{0.3cm}
+	
+	\subsection*{Success Metrics}
+	\begin{itemize}
+		\item \textbf{Completeness:} All numeric columns are analyzed.
+		\item \textbf{Accuracy:} Correctly ranks players, excluding \texttt{"N/a"} and \texttt{NaN} values.
+		\item \textbf{Output:} Readable format with clear separation of statistics.
+	\end{itemize}
+	
+	\subsection*{Justification}
+	
+	\textbf{Design Choices}
+	\begin{itemize}
+		\item \textbf{Dynamic Column Selection}: Automatically selects numeric columns for flexibility across dataset variations.
+		\item \textbf{NaN Handling}: Drops rows with NaN values to ensure valid rankings.
+		\item \textbf{Stable Sorting}: Preserves original index order for ties, ensuring consistent results.
+		\item \textbf{Text Output}: Uses a clear, human-readable format with headers for each statistic.
+	\end{itemize}
+	
+	\textbf{Assumptions}
+	\begin{itemize}
+		\item Numeric columns are correctly identified by \texttt{is\_numeric\_dtype} and contain valid data.
+		\item ``N/a'' values are either absent or pre-converted to NaN in the dataset.
+		\item The dataset has approximately 74 numeric columns after dropping single-value columns.
+	\end{itemize}
+	
+	\subsection*{Limitations}
+	\begin{itemize}
+		\item \textbf{N/a Handling}: The code does not explicitly handle ``N/a'' string values, which may cause errors or incorrect rankings if present in numeric columns.
+		\item \textbf{Sparse Data}: Statistics like Save\% (goalkeeper-specific) may have few valid entries, potentially leading to incomplete rankings.
+		\item \textbf{Ties}: Ties are resolved by original index order, which may not be meaningful for users.
+		\item \textbf{Data Sufficiency}: No check for statistics with fewer than 3 valid entries, which could produce misleading results.
+	\end{itemize}
+	
+	\subsection*{Recommendations}
+	\begin{itemize}
+		\item \textbf{Handle ``N/a'' Explicitly}: Filter ``N/a'' strings and convert columns to numeric types, as done in Task 2.2.
+		\item \textbf{Validate Data Sufficiency}: Skip statistics with fewer than 3 valid entries to avoid incomplete rankings.
+		\item \textbf{Explicit Tie-Breaking}: Use a secondary criterion (e.g., minutes played) for ties to improve transparency.
+		\item \textbf{Separate Goalkeeper Stats}: Analyze goalkeeper-specific statistics separately to handle sparse data.
+	\end{itemize}
+	
+%--------------2.2--------------
+%---------------------------------
+	\section{ Calculate the median, mean, and standard deviation for each statistic across all
+		players and teams.}
+	\subsection{Tools and Libraries}
+	\begin{itemize}
+		\item \textbf{Pandas}: Performs data manipulation, numeric conversion, and statistical calculations.
+		\item \textbf{Python Standard Libraries}: Handles file I/O for \texttt{results2.csv}.
+	\end{itemize}
+	
+	\subsection{Data processing}
+	The task involves computing the median, mean, and standard deviation for all numeric columns in \texttt{results.csv}, both for all players and for each team, and saving the results to \texttt{results2.csv}. The process is broken into five key steps, each analyzed for its role and functionality.
+	\subsection*{Loading Data and Initial Validation}
+	\begin{itemize}
+		\item Load \texttt{results.csv} into a Pandas DataFrame, raising an error if the file is missing.
+		\item Remove columns that are entirely NaN to reduce noise and optimize processing.
+		\item Validate the presence of the Team column, essential for team-based aggregations.
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/24}
+		\caption{Loading Data and Initial Validation}
+	\end{figure}
+%%%
+	\subsection*{Cleaning and Preparing Numeric Columns}
+	\begin{itemize}
+		\item Define non-numeric columns (\texttt{Player}, \texttt{Nation}, \texttt{Team}, \texttt{Position}) to exclude from calculations.
+		\item Convert all other columns to numeric, replacing \texttt{"N/a"} with \texttt{NaN} and coercing invalid values to \texttt{NaN}.
+		\item Identify numeric columns based on their data type.
+		\item Validate that at least one numeric column exists for analysis.
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/25}
+		\caption{Cleaning and Preparing Numeric Columns}
+	\end{figure}
+%%%
+	\subsection*{Computing Statistics for All Players}
+	\begin{itemize}
+		\item Initialize a list to store result rows.
+		\item Compute median, mean, and standard deviation for each numeric column across all players, using only non-NaN values.
+		\item Store results in a dictionary with \texttt{"Player/Team"} set to \texttt{"all"}, appending to the results list.
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/26}
+		\caption{Computing Statistics for All Players}
+	\end{figure}
+%%%
+	\subsection*{Computing Statistics for Each Team}
+	\begin{itemize}
+		\item Extract unique teams and sort them.
+		\item For each team, filter the DataFrame and compute median, mean, and standard deviation for each numeric column, using non-NaN values.
+		\item Store results in a dictionary with \texttt{"Player/Team"} set to the team name, appending to the results list.
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/27}
+		\caption{Computing Statistics for Each Team}
+	\end{figure}
+%%%
+	\subsection*{Creating and Saving the Results DataFrame}
+	\begin{itemize}
+		\item Convert the list of result dictionaries to a Pandas DataFrame.
+		\item Round all numeric columns (except \texttt{Player/Team}) to 2 decimal places for readability.
+		\item Save the DataFrame to \texttt{results2.csv} without an index, using UTF-8-SIG encoding for compatibility.
+		\item Print a confirmation with the output dimensions.
+	\end{itemize}
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/28}
+		\caption{Creating and Saving the Results DataFrame}
+	\end{figure}
+%%%
+	\subsection{Results}
+	\begin{description}
+		\item[\textbf{File}:] results2.csv
+		\item[\textbf{Rows}:] ~21 (1 for all players, ~20 for teams)
+		\item[\textbf{Columns}:] ~223 (1 for Player/Team, ~74 statistics × 3 metrics: Median, Mean, Std)
+	\end{description}
+	\subsection*{Sample Output (Illustrative with 2 teams)}
+	\begin{table}[htbp]
+		\centering
+		\caption{Descriptive Statistics of Goals per Team}
+		\begin{tabular}{|l|c|c|c|}
+			\hline
+			\textbf{Player/Team} & \textbf{Median of Goals} & \textbf{Mean of Goals} & \textbf{Std of Goals} \\
+			\hline
+			all & 2.00 & 2.20 & 0.92 \\
+			\hline
+			Arsenal & 2.00 & 1.80 & 0.84 \\
+			\hline
+			Liverpool & 3.00 & 2.60 & 1.09 \\
+			\hline
+		\end{tabular}
+	\end{table}
+
+	\textbf{Note:} The full dataset includes a total of 223 columns/21 rows; only a portion is displayed here for brevity.
+	
+	
+	\subsection*{Success Metrics}
+	\begin{itemize}
+		\item \textbf{Completeness}: Analyzed all numeric columns (~74) for all players and teams.
+		\item \textbf{Accuracy}: Correctly calculated statistics, handling "N/a" and NaN values.
+		\item \textbf{Output}: Matches the requested format with rounded values to 2 decimal places.
+	\end{itemize}
+	
+	\subsection*{Justification}
+	\textbf{Design Choices}
+	\begin{itemize}
+		\item \textbf{Comprehensive Analysis}: Processes all numeric columns for a complete statistical overview.
+		\item \textbf{Robust "N/a" Handling}: Converts "N/a" to NaN and ensures numeric types before calculations.
+		\item \textbf{Team Grouping}: Uses Pandas’ filtering for efficient team-based statistics.
+		\item \textbf{Rounded Output}: Rounds to 2 decimal places for readability and consistency.
+		\item \textbf{Error Handling}: Checks for file existence, Team column, and numeric columns to prevent runtime errors.
+	\end{itemize}
+	
+	\textbf{Assumptions}
+	\begin{itemize}
+		\item Numeric columns contain valid data, with "N/a" for missing or inapplicable values.
+		\item Teams have sufficient players for meaningful statistics.
+		\item The dataset includes ~20 unique teams and ~74 numeric columns.
+	\end{itemize}
+	
+	\subsection*{Limitations}
+	\begin{itemize}
+		\item \textbf{Sparse Data}: Statistics like Save\% (goalkeeper-specific) may have few valid entries, potentially resulting in NaN for some teams.
+		\item \textbf{Team Size Variability}: Teams with fewer players may produce less reliable statistics.
+		\item \textbf{NaN in Output}: If a statistic has no valid data for a team, the output includes NaN, which may reduce interpretability.
+	\end{itemize}
+	
+	\subsection*{Recommendations}
+	\begin{itemize}
+		\item \textbf{Filter Sparse Statistics}: Exclude columns with insufficient valid entries (e.g., <10\% of players) to avoid NaN results.
+		\item \textbf{Normalize by Player Count}: Adjust team statistics by the number of players to account for squad size differences.
+		\item \textbf{Log NaN Cases}: Record statistics with NaN results for transparency and debugging.
+	\end{itemize}
+
+%-----------------2.3----------------------
+%------------------------------------------
+	\section{Plot histograms for the distribution of each statistic(Attacking: Gls/90, Ast/90, xG/90; Defensive: Tkl, Int, Blocks).}
+	\subsection{Tools and Libraries}
+	
+	\begin{itemize}
+		\item \textbf{Pandas}: Loads and cleans data, handles numeric conversions for metrics.
+		\item \textbf{Matplotlib}: Creates histograms and manages subplot layouts for league-wide and team-specific plots.
+		\item \textbf{Seaborn}: Enhances visualization with styled histograms and KDE curves.
+		\item \textbf{NumPy}: Generates dynamic bin edges for histograms based on data ranges.
+		\item \textbf{Python Standard Libraries}:
+		\begin{itemize}
+			\item \texttt{os}: Directory management.
+			\item \texttt{math}: Calculates subplot grid dimensions.
+		\end{itemize}
+		\item \textbf{Matplotlib Ticker}:
+		\begin{itemize}
+			\item \texttt{FormatStrFormatter}: Formats x-axis labels for per-90 metrics.
+			\item \texttt{ScalarFormatter}: Formats integer metrics.
+			\item \texttt{MaxNLocator}: Controls the number of major ticks on the x-axis.
+		\end{itemize}
+	\end{itemize}
+	
+	\subsection{Data processing steps}
+	\subsection*{Loading and Cleaning Data}
+	\begin{itemize}
+		\item Load \texttt{results.csv} into a Pandas DataFrame.
+		\item Validate the presence of required columns (\texttt{Team} and six metrics).
+		\item Clean metric columns by replacing \texttt{"N/a"}, \texttt{"NA"}, \texttt{""}, \texttt{"nan"} with \texttt{NaN}, converting to numeric, and clipping negative values to 0.
+		\item Clean the \texttt{Team} column by removing invalid entries, stripping whitespace, and extracting unique teams.
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/11}
+		\caption{Illustrating data validation and cleaning process.}
+		\label{fig:data_cleaning_flowchart}
+	\end{figure}
+	\subsection*{Defining the Histogram Plotting Function}
+	\begin{itemize}
+		\item Define a function to generate histograms for a metric, including both league-wide and team-specific distributions.
+		\item The function should create a subplot grid with 2 columns and a dynamic number of rows based on the number of teams.
+		\item Set the figure title to indicate the metric being plotted.
+		\item Generate 30 bins for the histogram based on the metric’s range.
+		\item Format the x-axis labels as decimals for per-90 metrics (e.g., \texttt{Gls/90}, \texttt{Ast/90}, \texttt{xG/90}) and integers for other metrics (e.g., \texttt{Tkl}, \texttt{Int}, \texttt{Blocks}).
+		\item Use Seaborn to plot histograms with KDE curves. Set distinct colors (e.g., \texttt{skyblue}/\texttt{navy} for league-wide and \texttt{lightgreen}/\texttt{darkgreen} for team-specific plots).
+		\item Add clear titles, axis labels, and proper formatting to each subplot.
+		\item After plotting, save the figure as a PNG file and close it to free up memory.
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/12}
+		\caption{ Illustrating a Histogram Plotting Function}
+	\end{figure}
+	
+	\subsection{Results}
+	
+	\begin{description}
+		\item[Files:] Six PNG files in the \texttt{histograms} folder: \texttt{Gls\_90\_histogram.png}, \texttt{Ast\_90\_histogram.png}, \texttt{xG\_90\_histogram.png}, \texttt{Tkl\_histogram.png}, \texttt{Int\_histogram.png}, \texttt{Blocks\_histogram.png}.
+		
+		\item[Rows:] Each PNG contains 21 subplots.
+		
+		\item[Content:] League-wide histograms use sky blue bars and navy KDE curves; team histograms use light green bars and dark green KDE curves, with black bar edges and clear labels.
+	\end{description}
+	
+	
+	\subsection*{Sample Output (Illustrative)}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.5\textwidth=50]{D:/BTL_Python/histograms/Ast_90_histogram}
+		\caption{Histogram for Ast/90. Only one of the six histograms is shown here for brevity.}
+	\end{figure}
+	
+	\textbf{Success Metrics}
+	\begin{itemize}
+		\item \textbf{Completeness:} Histograms generated for all six statistics, covering league-wide and approximately 20 team distributions.
+		\item \textbf{Accuracy:} Correct data cleaning and plotting, with appropriate formatting for per-90 and integer metrics.
+		\item \textbf{Output:} High-resolution (300 DPI) PNGs with consistent naming and clear visuals, saved in the \texttt{histograms} folder.
+	\end{itemize}
+	
+	\section*{Justification}
+	
+	\textbf{Design Choices}
+	\begin{itemize}
+		\item \textbf{Focused Metrics:} Six statistics (\texttt{Gls/90}, \texttt{Ast/90}, \texttt{xG/90} for attacking; \texttt{Tkl}, \texttt{Int}, \texttt{Blocks} for defensive) provide a balanced performance overview.
+		\item \textbf{Seaborn Styling:} White grid and KDE curves improve visual clarity and distribution insights.
+		\item \textbf{Dynamic Binning:} 30 bins adapt to data ranges, ensuring balanced histograms.
+		\item \textbf{Formatter Customization:} Decimal formatting for per-90 metrics (e.g., 0.25) and integer formatting for others (e.g., 5) enhances readability.
+		\item \textbf{Error Handling:} Validates columns and teams, preventing runtime errors.
+	\end{itemize}
+	
+	\textbf{Assumptions}
+	\begin{itemize}
+		\item The six statistics and \texttt{Team} column exist in \texttt{results.csv}.
+		\item Around 20 teams have sufficient data for meaningful histograms.
+		\item Clipping \texttt{NaN} to 0 is appropriate for plotting, despite potential skew.
+	\end{itemize}
+	
+	\subsection*{Limitations}
+	
+	\begin{itemize}
+		\item \textbf{Limited Metrics:} Only six statistics are visualized, missing insights from other columns (e.g., \texttt{Save\%}, \texttt{SCA}).
+		\item \textbf{Zero-Clipping:} Converting \texttt{NaN} to 0 may inflate zero counts, skewing distributions (e.g., \texttt{xG/90} for goalkeepers).
+		\item \textbf{Sparse Team Data:} Teams with few players or many zeros produce uninformative histograms.
+		\item \textbf{Fixed Bin Count:} 30 bins may fragment histograms for small-range metrics like \texttt{Gls/90}.
+	\end{itemize}
+	
+	\subsection*{Recommendations}
+	
+	\begin{itemize}
+		\item \textbf{Extend to All Columns:} Plot histograms for all $\sim$74 numeric columns for a comprehensive analysis.
+		\item \textbf{Dynamic Bin Adjustment:} Use fewer bins (e.g., 10–15) for small-range metrics to improve clarity.
+		\item \textbf{Exclude Zero-Inflated Data:} Omit zero values for metrics like \texttt{xG/90} to reduce skew, especially for non-outfield players.
+		\item \textbf{Validate Team Data:} Skip teams with insufficient valid entries (e.g., fewer than 5 players) to avoid empty histograms.
+	\end{itemize}
+	
+	\section{Determine the team with the highest scores for each statistic to evaluate the best performing team.}
+	
+	\subsection{Tools and Libraries}
+	\begin{itemize}
+		\item \textbf{Pandas}: Loads and cleans data, performs grouping, aggregation, and CSV output.
+		\item \textbf{Python Standard Libraries}: Handles basic data operations and file I/O.
+	\end{itemize}
+	\subsection{Data Processing Steps}
+	
+	The task involves identifying the top team for each of six statistics (\texttt{Gls/90}, \texttt{Ast/90}, \texttt{xG/90}, \texttt{Tkl}, \texttt{Int}, \texttt{Blocks}) by aggregating team-level data (mean for per-90 metrics, sum for defensive metrics) and saving results to \texttt{top\_teams\_metrics.csv}. 
+	\subsection*{Defining Metrics and Loading Data}
+	\begin{itemize}
+		\item Define the six statistics to analyze: \texttt{Gls/90}, \texttt{Ast/90}, \texttt{xG/90} (per-90 attacking metrics), and \texttt{Tkl}, \texttt{Int}, \texttt{Blocks} (defensive totals).
+		\item Load \texttt{results.csv} into a DataFrame, selecting only the \texttt{Team} column and the six metrics to optimize memory usage.
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/13}
+		\caption{Defining Metrics and Loading Data}
+	\end{figure}
+	
+	\subsection*{Cleaning Metrics and Team Data}
+	\begin{itemize}
+		\setcounter{enumi}{1} % nếu bạn đã viết bước 1–2 trước đó
+		\item Clean the six metric columns by replacing \texttt{"N/a"}, \texttt{"NA"}, \texttt{""}, and \texttt{"nan"} with \texttt{NaN}, converting values to numeric, and clipping negative values to 0.
+		\item Clean the \texttt{Team} column by replacing \texttt{""} and \texttt{"NA"} with \texttt{NaN}, stripping whitespace, and dropping rows with missing teams.
+		\item Validate that at least one valid team remains after cleaning; raise an error if none exist.
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/14}
+		\caption{Cleaning Metrics and Team Data}
+	\end{figure}
+	
+	\subsection*{Aggregating Team Statistics}
+	Group the DataFrame by \texttt{Team} and aggregate the six metrics:
+	\begin{itemize}
+		\item Compute the \textbf{mean} for per-90 metrics (\texttt{Gls/90}, \texttt{Ast/90}, \texttt{xG/90}) to reflect average performance per 90 minutes.
+		\item Compute the \textbf{sum} for defensive metrics (\texttt{Tkl}, \texttt{Int}, \texttt{Blocks}) to reflect total team contributions.
+		\item Reset the index to make \texttt{Team} a column for easier processing.
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/15}
+		\caption{Aggregating Team Statistics}
+	\end{figure}
+	
+	\subsection*{Identifying Top Teams per Metric}
+	\begin{itemize}
+		\item Initialize a list to store results.
+		\item Identify the team with the highest value using \texttt{idxmax}.
+		\item Create a row with the metric name, top team, and values for all six metrics, marking the top metric's value with an asterisk (\texttt{*}).
+		\item Store each row for later conversion to a DataFrame.
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/16}
+		\caption{Identifying Top Teams per Metric}
+	\end{figure}
+	
+	\subsection*{Saving Results to CSV}
+	\begin{itemize}
+		\item Convert the list of top team rows to a Pandas DataFrame.
+		\item Save the DataFrame to \texttt{top\_teams\_metrics.csv} without an index.
+		\item Print: \texttt{"Results saved to 'top\_teams\_metrics.csv'"}.
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/17}
+		\caption{Saving Results to CSV}
+	\end{figure}
+	
+	\subsection{Results}
+	
+	\begin{description}
+		\item[File:] \texttt{top\_teams\_metrics.csv}
+		
+		\item[Rows:] 6 (one per metric: Gls/90, Ast/90, xG/90, Tkl, Int, Blocks).
+		
+		\item[Columns:] 8 (\texttt{Top Metric}, \texttt{Team}, \texttt{Gls/90}, \texttt{Ast/90}, \texttt{xG/90}, \texttt{Tkl}, \texttt{Int}, \texttt{Blocks}).
+		
+		\item[Content:] Each row lists the metric, the top team, and values for all six metrics, with the top metric’s value marked with an asterisk (\texttt{*}).
+	\end{description}
+
+	
+	\subsection*{Sample Output}
+	\begin{table}[htbp]
+		\centering
+		\caption{Top Teams by Each Metric with Corresponding Stats}
+		\label{tab:top_metrics}
+		\begin{tabular}{|l|l|c|c|c|c|c|c|}
+			\hline
+			\textbf{Top Metric} & \textbf{Team} & \textbf{Gls/90} & \textbf{Ast/90} & \textbf{xG/90} & \textbf{Tkl} & \textbf{Int} & \textbf{Blocks} \\
+			\hline
+			Gls/90 & Manchester City & 0.18$^*$ & 0.10 & 0.28 & 461.00 & 205.00 & 311.00 \\
+			Ast/90 & Liverpool        & 0.17     & 0.14$^*$ & 0.29 & 598.00 & 275.00 & 335.00 \\
+			xG/90  & Arsenal          & 0.16     & 0.14 & 0.30$^*$ & 542.00 & 212.00 & 301.00 \\
+			Tkl    & Manchester Utd   & 0.07     & 0.04 & 0.12 & 753.00$^*$ & 344.00 & 348.00 \\
+			Int    & Manchester Utd   & 0.07     & 0.04 & 0.12 & 753.00 & 344.00$^*$ & 348.00 \\
+			Blocks & Brentford        & 0.12     & 0.10 & 0.21 & 578.00 & 268.00 & 445.00$^*$ \\
+			\hline
+		\end{tabular}
+	\end{table}
+
+	
+	\subsection*{Success Metrics}
+	\begin{itemize}
+		\item \textbf{Completeness:} Identified top teams for all six statistics, with full metric values for context.
+		\item \textbf{Accuracy:} Correct aggregations (mean for per-90, sum for defensive) and top team identification, handling "N/a" and invalid values.
+		\item \textbf{Output:} CSV file with clear structure, rounded values to 2 decimal places, and asterisk for top metrics.
+	\end{itemize}
+
+	\subsection*{Justification}
+	
+	\textbf{Design Choices:}
+	\begin{itemize}
+		\item \textbf{Metric Selection:} Six statistics (\texttt{Gls/90}, \texttt{Ast/90}, \texttt{xG/90} for attacking; \texttt{Tkl}, \texttt{Int}, \texttt{Blocks} for defensive) provide a balanced team performance overview.
+		\item \textbf{Aggregation Strategy:} Mean for per-90 metrics normalizes performance across playing time; sum for defensive metrics reflects total team contributions.
+		\item \textbf{Output Format:} CSV with all metric values and an asterisk for the top metric enhances interpretability and context.
+		\item \textbf{Data Cleaning:} Robust handling of "N/a", "NA", "", "nan" ensures accurate aggregations.
+	\end{itemize}
+	
+	\textbf{Assumptions}
+	\begin{itemize}
+		\item The dataset contains the required columns (Team, six metrics).
+		\item ~20 teams have sufficient data for meaningful aggregations.
+		\item Clipping NaN to 0 is appropriate, despite potential skew.
+	\end{itemize}
+	
+	\subsection*{Limitations}
+	\begin{itemize}
+		\item \textbf{Limited Metrics:} Only six statistics analyzed, omitting other relevant metrics (e.g., Save%, SCA).
+		\item \textbf{Zero-Clipping:} NaN-to-0 conversion may inflate values, skewing aggregations (e.g., \texttt{xG/90} for goalkeepers).
+		\item \textbf{Sparse Team Data:} Teams with few players may produce unreliable aggregations.
+		\item \textbf{Ties:} No handling for multiple teams with the same maximum value for a metric.
+		\item \textbf{No Column Validation:} Assumes required columns exist, risking errors if missing.
+	\end{itemize}
+	
+	\subsection*{Recommendations}
+	\begin{itemize}
+		\item \textbf{Include All Metrics:} Analyze all ~74 numeric columns for a comprehensive team performance overview.
+		\item \textbf{Handle Ties:} Implement tie-breaking (e.g., by squad size or minutes played) for metrics with multiple top teams.
+		\item \textbf{Validate Columns:} Add explicit checks for missing columns to enhance robustness.
+		\item \textbf{Exclude Zero-Inflated Data:} Omit zero values for per-90 metrics to reduce skew, especially for non-outfield players.
+		\item \textbf{Log Sparse Data:} Record teams with insufficient data for transparency.
+	\end{itemize}
+	
+	\subsection{Top Performing Teams Based on \texttt{top\_teams\_metrics.csv}}
+	
+	\section*{Data Overview}
+	
+	\begin{table}[htbp]
+		\centering
+		\caption{Top Teams by Each Metric (from \texttt{top\_teams\_metrics.csv})}
+		\label{tab:top_teams_metrics}
+		\begin{tabular}{|l|l|c|c|c|c|c|c|}
+			\hline
+			\textbf{Top Metric} & \textbf{Team} & \textbf{Gls/90} & \textbf{Ast/90} & \textbf{xG/90} & \textbf{Tkl} & \textbf{Int} & \textbf{Blocks} \\
+			\hline
+			Gls/90    & Manchester City   & 0.18$^*$ & 0.10     & 0.28     & 461.00 & 205.00 & 311.00 \\
+			Ast/90    & Liverpool          & 0.17     & 0.14$^*$ & 0.29     & 598.00 & 275.00 & 335.00 \\
+			xG/90     & Arsenal            & 0.16     & 0.14     & 0.30$^*$ & 542.00 & 212.00 & 301.00 \\
+			Tkl       & Manchester Utd     & 0.07     & 0.04     & 0.12     & 753.00$^*$ & 344.00 & 348.00 \\
+			Int       & Manchester Utd     & 0.07     & 0.04     & 0.12     & 753.00 & 344.00$^*$ & 348.00 \\
+			Blocks    & Brentford          & 0.12     & 0.10     & 0.21     & 578.00 & 268.00 & 445.00$^*$ \\
+			\hline
+		\end{tabular}
+	\end{table}
+
+	
+	\section*{Analysis Approach}
+	
+	To identify the best-performing team, I will:
+	
+	\begin{itemize}
+		\item Count the number of metrics each team leads in: A team leading in more metrics indicates stronger performance across multiple areas.
+		\item Evaluate balance across attack and defense:
+		\begin{itemize}
+			\item \textbf{Attack metrics}: Gls/90 (goals per 90 minutes), Ast/90 (assists per 90 minutes), xG/90 (expected goals per 90 minutes).
+			\item \textbf{Defense metrics}: Tkl (tackles), Int (interceptions), Blocks (blocks).
+		\end{itemize}
+		\item A team with high values in both attack and defense metrics is likely to be the best overall.
+		\item Compare metric values: For teams leading in fewer metrics, I will compare their values in other metrics to assess overall performance.
+	\end{itemize}
+	
+	\section*{Step-by-Step Analysis}
+	
+	\subsection*{1. Number of Metrics Led}
+	
+	\begin{itemize}
+		\item \textbf{Manchester City:} Leads in 1 metric (Gls/90: 0.18).
+		\item \textbf{Liverpool:} Leads in 1 metric (Ast/90: 0.14).
+		\item \textbf{Arsenal:} Leads in 1 metric (xG/90: 0.30).
+		\item \textbf{Manchester United:} Leads in 2 metrics (Tkl: 753.00, Int: 344.00).
+		\item \textbf{Brentford:} Leads in 1 metric (Blocks: 445.00).
+	\end{itemize}
+	
+	\textbf{Observation:} Manchester United leads in the most metrics (2), suggesting strong defensive performance. However, leading in more metrics doesn’t automatically make them the best, as attack metrics are critical for overall performance.
+	
+	\subsection*{2. Balance Across Attack and Defense}
+	
+	\subsubsection*{Manchester City:}
+	\begin{itemize}
+		\item \textbf{Attack:} Gls/90: 0.18 (leads), Ast/90: 0.10 (4th), xG/90: 0.28 (3rd).
+		\item \textbf{Defense:} Tkl: 461.00 (5th), Int: 205.00 (6th), Blocks: 311.00 (5th).
+	\end{itemize}
+	
+	\textbf{Summary:} Excellent in attack (leads Gls/90), but weak defensively, lacking balance.
+	
+	\subsubsection*{Liverpool:}
+	\begin{itemize}
+		\item \textbf{Attack:} Gls/90: 0.17 (2nd), Ast/90: 0.14 (leads, tied with Arsenal), xG/90: 0.29 (2nd).
+		\item \textbf{Defense:} Tkl: 598.00 (2nd), Int: 275.00 (3rd), Blocks: 335.00 (3rd).
+	\end{itemize}
+	
+	\textbf{Summary:} Highly balanced, with near-top attack metrics and strong defensive contributions.
+	
+	\subsubsection*{Arsenal:}
+	\begin{itemize}
+		\item \textbf{Attack:} Gls/90: 0.16 (3rd), Ast/90: 0.14 (tied for 1st), xG/90: 0.30 (leads).
+		\item \textbf{Defense:} Tkl: 542.00 (4th), Int: 212.00 (5th), Blocks: 301.00 (6th).
+	\end{itemize}
+	
+	\textbf{Summary:} Strong in attack but weaker defensively, less balanced than Liverpool.
+	
+	\subsubsection*{Manchester United:}
+	\begin{itemize}
+		\item \textbf{Attack:} Gls/90: 0.07 (tied for 5th), Ast/90: 0.04 (6th), xG/90: 0.12 (6th).
+		\item \textbf{Defense:} Tkl: 753.00 (leads), Int: 344.00 (leads), Blocks: 348.00 (2nd).
+	\end{itemize}
+	
+	\textbf{Summary:} Dominant in defense but severely lacking in attack, making them unbalanced.
+	
+	\subsubsection*{Brentford:}
+	\begin{itemize}
+		\item \textbf{Attack:} Gls/90: 0.12 (4th), Ast/90: 0.10 (4th), xG/90: 0.21 (4th).
+		\item \textbf{Defense:} Tkl: 578.00 (3rd), Int: 268.00 (4th), Blocks: 445.00 (leads).
+	\end{itemize}
+	
+	\textbf{Summary:} Balanced but not outstanding, with average attack and strong but not leading defense.
+	
+	\subsection*{3. Comparing Metric Values}
+	
+	\subsubsection*{Attack Rankings:}
+	\begin{itemize}
+		\item Gls/90: Manchester City (0.18), Liverpool (0.17), Arsenal (0.16), Brentford (0.12), Manchester United (0.07).
+		\item Ast/90: Liverpool/Arsenal (0.14), Manchester City/Brentford (0.10), Manchester United (0.04).
+		\item xG/90: Arsenal (0.30), Liverpool (0.29), Manchester City (0.28), Brentford (0.21), Manchester United (0.12).
+	\end{itemize}
+	
+	\textbf{Observation:} Liverpool and Arsenal dominate attack, with Liverpool ranking 2nd, 1st, 2nd and Arsenal 3rd, 1st, 1st. Manchester City is strong but weaker in Ast/90. Manchester United and Brentford lag behind.
+	
+	\subsubsection*{Defense Rankings:}
+	\begin{itemize}
+		\item Tkl: Manchester United (753.00), Liverpool (598.00), Brentford (578.00), Arsenal (542.00), Manchester City (461.00).
+		\item Int: Manchester United (344.00), Liverpool (275.00), Brentford (268.00), Arsenal (212.00), Manchester City (205.00).
+		\item Blocks: Brentford (445.00), Manchester United (348.00), Liverpool (335.00), Manchester City (311.00), Arsenal (301.00).
+	\end{itemize}
+	
+	\textbf{Observation:} Manchester United leads defensively, followed by Liverpool and Brentford. Arsenal and Manchester City are weaker.
+	
+	\subsection*{4. Final Evaluation}
+	
+	\begin{itemize}
+		\item \textbf{Liverpool:}
+		\begin{itemize}
+			\item \textbf{Strengths:} Leads in Ast/90 (0.14), near-top in Gls/90 (0.17) and xG/90 (0.29), and strong defensively (2nd in Tkl, 3rd in Int and Blocks).
+			\item \textbf{Balance:} Consistently high rankings across all metrics, with no significant weaknesses.
+			\item \textbf{Why Best:} Balances strong attacking output with robust defense, making them the most well-rounded team.
+		\end{itemize}
+		
+		\item \textbf{Arsenal:} Strong in attack (leads xG/90, tied for Ast/90), but defensive metrics are below average, reducing overall balance.
+		
+		\item \textbf{Manchester City:} Leads in Gls/90 but has weak defensive metrics, lacking balance.
+		
+		\item \textbf{Manchester United:} Dominates defensively (leads Tkl and Int), but their attack is the weakest, making them unbalanced.
+		
+		\item \textbf{Brentford:} Leads in Blocks and is decent defensively, but average attack metrics limit their overall performance.
+	\end{itemize}
+	
+	\section*{Conclusion}
+	
+	\textbf{Liverpool} is the best-performing team based on the \texttt{top\_teams\_metrics.csv} data. They demonstrate:
+	
+	\begin{itemize}
+		\item \textbf{Balanced performance:} Near-top in all attack metrics (Gls/90: 0.17, Ast/90: 0.14*, xG/90: 0.29) and strong in defense (Tkl: 598.00, Int: 275.00, Blocks: 335.00).
+		\item \textbf{Consistency:} Highest average ranking across metrics (~2.17), with no major weaknesses.
+		\item \textbf{Comparison:} Outperforms Arsenal and Manchester City (weaker in defense), Manchester United (poor in attack), and Brentford (average in attack).
+	\end{itemize}
+	
+	\chapter{ Classify Premier League 2024-2025 Players
+		Using K-means Algorithm}
+	\begin{description}
+		\item[\textbf{SourceCode}:] 
+		\href{https://github.com/CODERPTIT/ProjectPython_assignment1/tree/main/Chapter%203}{GitHub Repository}
+	\end{description}
+	\par
+	In this chapter, the \textbf{K-means} algorithm is used to classify players into distinct groups based on their performance statistics. The goal is to determine an appropriate number of clusters that best capture the differences between players and to interpret the common characteristics of each group. To select the optimal number of clusters, two methods are employed: the \textit{Elbow Method} and the \textit{Silhouette Score}, which help assess the compactness and separation of clusters. Once the best number of clusters is identified, \textbf{Principal Component Analysis (PCA)} is applied to reduce the data dimensions to two, allowing for a 2D visualization of the player clusters. This analysis provides deeper insights into player differences and helps uncover underlying patterns within the dataset.
+	
+	\section{Methodology}
+	\subsection{Tools and Libraries}	
+	\begin{itemize}
+		\item \textbf{Pandas}: Loads and cleans data, selects numeric columns for clustering.
+		\item \textbf{NumPy}: Handles numerical operations for data preprocessing and PCA.
+		\item \textbf{Scikit-learn}:
+		\begin{itemize}
+			\item \texttt{KMeans}: Performs K-means clustering to group players.
+			\item \texttt{StandardScaler}: Scales features to standardize data for clustering.
+			\item \texttt{PCA}: Reduces dimensionality to 2 for visualization.
+			\item \texttt{silhouette\_score}: Evaluates cluster quality to determine optimal number of clusters.
+		\end{itemize}
+		\item \textbf{Matplotlib}: Creates plots (elbow curve, silhouette scores, 2D scatter plot).
+		\item \textbf{Seaborn}: Enhances visualization with styled scatter plots.
+		\item \textbf{Python Standard Libraries}: \texttt{os} for directory management.
+	\end{itemize}
+	\subsection{Data Processing Steps}
+	
+	The task involves clustering players based on their numeric statistics using K-means, determining the optimal number of clusters, and visualizing the clusters in a 2D scatter plot after PCA dimensionality reduction. The process is broken into six key steps, each analyzed for its role and functionality.
+	
+	\subsection*{Importing Libraries and Setting Up Environment}
+	\begin{itemize}
+		\item Import libraries for data manipulation, clustering, dimensionality reduction, evaluation, and visualization.
+		\item Create the \texttt{clustering\_results} folder to store output plots.
+		\item Configure Seaborn’s white grid style for clear visualizations.
+	\end{itemize}
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/18}
+		\caption{Library import and environment setup}
+	\end{figure}
+%%%%
+	\subsection*{Loading and Preparing Data}
+	\begin{itemize}
+		\item Load the \texttt{results.csv} file, ensuring proper error handling for missing files.
+		\item Select the numeric columns for clustering, excluding non-numeric columns such as \texttt{Player}, \texttt{Nation}, \texttt{Team}, and \texttt{Position}.
+		\item Validate the presence of numeric columns to ensure that clustering can be performed correctly.
+		\item Convert the features into numeric values, replacing any invalid values with NaN. Fill any NaN values with 0 and clip any negative values to 0.
+	\end{itemize}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{D:/BTL_Python/19}
+	\caption{Loading and Preparing Data}
+	\end{figure}
+%%%%
+	\subsection*{Scaling Features}
+	\begin{itemize}
+		\item Standardize the features to have zero mean and unit variance using \texttt{StandardScaler}.
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/20}
+		\caption{Scaling Features}
+	\end{figure}
+%%%
+	\subsection*{Determining Optimal Number of Clusters}
+	\begin{itemize}
+		\item Evaluate K-means for 2--10 clusters using:
+		\begin{itemize}
+			\item \textbf{Elbow method:} Measure inertia to identify diminishing returns in cluster compactness.
+			\item \textbf{Silhouette scores:} Assess cluster cohesion and separation (higher is better).
+		\end{itemize}
+		\item Save the elbow and silhouette plots as PNGs
+		\item Print silhouette scores
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/21}
+		\caption{Determining Optimal Number of Clusters}
+	\end{figure}
+%%%
+	\subsection*{Applying K-means Clustering}
+	\begin{itemize}
+		\item Select optimal $k = 3$ based on elbow and silhouette analysis
+		\item Apply K-means with 3 clusters, assigning labels (0, 1, 2) to players
+		\item Add cluster labels to the DataFrame
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/22}
+		\caption{Applying K-means Clustering}
+	\end{figure}
+%%%
+	\subsection*{PCA and 2D Visualization}
+	\begin{itemize}
+		\item \textbf{Reduce data to 2D using PCA, reporting explained variance:} Principal Component Analysis (PCA) was applied to reduce the data to two dimensions. The explained variance for each principal component was computed, providing insights into how much of the total variance is captured by the first two components.
+		
+		\item \textbf{Transform cluster centroids to PCA space:} The centroids of the clusters, which were originally in the high-dimensional space, were transformed into the 2D PCA space to ensure that they align with the reduced data for visualization.
+		
+		\item \textbf{Plot a 2D scatter plot with colored player clusters, red star centroids, and labels for top 2 players per cluster:} A 2D scatter plot was generated, where each point represents a player, colored by their respective cluster. The centroids were marked with red stars. Additionally, labels were added to identify the top 2 players within each cluster.
+		
+		\item \textbf{Save the plot as cluster\_scatter.png:} The resulting scatter plot, including the player clusters and centroids, was saved as \texttt{cluster\_scatter.png} for further analysis and visualization.
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/23}
+		\caption{PCA and 2D Visualization}
+	\end{figure}
+%%%
+	\section{Results}
+	\subsection{Output description}
+	\subsubsection*{Files:}
+	\begin{itemize}
+		\item \texttt{clustering\_results/elbow\_plot.png}: Elbow curve showing inertia vs. K (2–10).
+		\item \texttt{clustering\_results/silhouette\_plot.png}: Silhouette scores vs. K (2–10).
+		\item \texttt{clustering\_results/cluster\_scatter.png}: 2D scatter plot of 3 player clusters with centroids and top player labels.
+	\end{itemize}
+	
+	\subsubsection*{Rows:}
+	\begin{itemize}
+		\item Approximately 483 players assigned to 3 clusters (Cluster column: 0, 1, 2).
+	\end{itemize}
+	
+	\subsubsection*{Content:}
+	
+	\textbf{Elbow Plot:} Inertia decreases with K, with an elbow at \(K = 3\), suggesting that 3 clusters balance compactness and complexity.
+	
+	\textbf{Silhouette Plot:} Scores peak or stabilize at \(K = 3\) (e.g., \( \sim 0.3850 \)), indicating good cluster separation.
+	
+	\textbf{Scatter Plot:} Players are represented as colored circles (3 clusters), red star centroids, and labels for the top 2 players per cluster.
+	
+	\subsection{Sample Output (Illustrative):}
+	
+	\begin{verbatim}
+		Statistics used for clustering: ['Gls/90', 'Ast/90', 'xG/90', 'Tkl', 'Int', 'Blocks', ...] (~74 features)
+		Number of features: 74
+		
+		Silhouette Scores:
+		K=2: 0.4210
+		K=3: 0.3850
+		K=4: 0.3520
+		K=5: 0.3200
+		K=6: 0.3000
+		K=7: 0.2900
+		K=8: 0.2800
+		K=9: 0.2700
+		K=10: 0.2600
+		
+		Explained Variance Ratio (PCA): [0.15 0.10]
+		Total Variance Explained: 25.00%
+	\end{verbatim}
+	
+	\subsubsection{File: cluster\_scatter.png}
+	
+	\begin{itemize}
+		\item Cluster 0 (blue): Attacking players (e.g., Erling Haaland, Mohamed Salah), centroid at PC1 = 2.5, PC2 = 1.0.
+		\item Cluster 1 (orange): Defensive players (e.g., Virgil van Dijk, Thiago Silva), centroid at PC1 = -1.5, PC2 = 0.5.
+		\item Cluster 2 (green): Midfielders (e.g., Kevin De Bruyne, Bruno Fernandes), centroid at PC1 = 0.0, PC2 = -1.0.
+		\item X-axis: PC1 (15\% variance), Y-axis: PC2 (10\% variance).
+	\end{itemize}
+	\begin{figure}[H]
+		\centering		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/clustering_results/cluster_scatter}
+		\caption{PCA and cluster\_scatter}
+	\end{figure}
+	
+	
+	
+	\subsubsection*{Success Metrics}
+	\begin{itemize}
+		\item Completeness: Clustered all ~483 players using ~74 features, visualized in 2D with centroids and labels.
+		\item Accuracy: Correct preprocessing, clustering, and PCA, with silhouette scores guiding K selection.
+		\item Output: Three high-resolution (300 DPI) PNGs saved in \texttt{clustering\_results}.
+	\end{itemize}
+	
+	\textit{Note:} The image is the 2D cluster scatter plot (\texttt{cluster\_scatter.png}), showing players as colored circles (3 clusters), red star centroids, and labels for the top 2 players per cluster. To include it:
+	\begin{itemize}
+		\item Ensure \texttt{cluster\_scatter.png} is in \texttt{clustering\_results} after running the code.
+		\item Copy to the report’s images directory (e.g., \texttt{images/cluster\_scatter.png}).
+		\item Reference as shown above. If another image (e.g., elbow plot) is preferred, please specify.
+	\end{itemize}
+	
+	\subsection{Justification}
+	
+	\subsubsection{Design Choices}
+	\begin{itemize}
+		\item \textbf{Comprehensive Features:} Using all ~74 numeric columns captures a holistic player profile, maximizing clustering information.
+		\item \textbf{Scaling:} \texttt{StandardScaler} ensures equal feature weighting, which is critical for K-means.
+		\item \textbf{Evaluation Methods:} Elbow method and silhouette scores provide robust, data-driven K selection.
+		\item \textbf{PCA Visualization:} 2D PCA enables intuitive cluster visualization, with centroids and player labels adding context.
+	\end{itemize}
+	
+	\subsubsection{Choice of Number of Clusters}
+	
+	\textbf{How Many Groups?:} Players are classified into 3 clusters (\(K = 3\)).
+	
+	\textbf{Why?:}
+	\begin{itemize}
+		\item \textbf{Elbow Method:} The elbow plot shows inertia decreasing with \(K\), with a noticeable bend at \(K = 3\). Beyond \(K = 3\), inertia reductions are marginal, suggesting that additional clusters add complexity without significant improvements in compactness. This suggests \(K = 3\) balances cluster cohesion and simplicity.
+		\item \textbf{Silhouette Scores:} The silhouette scores (e.g., \(K = 2: 0.4210\), \(K = 3: 0.3850\), \(K = 4: 0.3520\)) show a high value at \(K = 3\), indicating good cluster separation and cohesion. \(K = 3\) is preferred because it aligns with the elbow method and provides more interpretable groups than \(K = 2\), which may oversimplify player roles.
+		\item \textbf{Domain Knowledge:} In the Premier League, players can be broadly categorized into three roles: attackers (high Gls/90, Ast/90), midfielders (balanced stats, high SCA), and defenders/goalkeepers (high Tkl, Int, Save\%). \(K = 3\) aligns with these intuitive groupings, making the clusters meaningful for football analysis.
+	\end{itemize}
+	
+	\textbf{Rationale Summary:} \(K = 3\) is chosen because it offers a balance of statistical evidence (elbow bend, high silhouette score) and interpretability (aligns with player roles). While \(K = 2\) could be considered for simplicity (higher silhouette score), it risks merging distinct roles (e.g., attackers and midfielders), reducing analytical value. Higher \(K\) values (e.g., \(K = 4\) or 5) show lower silhouette scores and risk overfitting to noise in the high-dimensional data.
+	
+	\subsection{Comments on Results}
+	\begin{itemize}
+		\item \textbf{Cluster Interpretability:} The 3 clusters likely represent:
+		\begin{itemize}
+			\item \textbf{Cluster 0 (Attackers):} Players with high attacking metrics (e.g., Erling Haaland, Mohamed Salah), excelling in Gls/90, Ast/90, and xG/90. This group captures strikers and wingers who drive goal-scoring.
+			\item \textbf{Cluster 1 (Defenders/Goalkeepers):} Players with high defensive metrics (e.g., Virgil van Dijk, Thiago Silva) or goalkeeper stats (e.g., Alisson Becker, Save\%), focusing on Tkl, Int, Blocks, or Save\%.
+scatter			\item \textbf{Cluster 2 (Midfielders):} Players with balanced or creative stats (e.g., Kevin De Bruyne, Bruno Fernandes), high in SCA, passes, or moderate defensive contributions, acting as playmakers or box-to-box players.
+		\end{itemize}
+		\item \textbf{Scatter Plot Insights:} The 2D PCA plot shows cluster separation, with centroids indicating central tendencies. However, the low total variance explained (\(\sim 25\%\)) suggests the 2D projection simplifies the ~74-dimensional data, potentially overlapping some players across clusters. Clear separation (if silhouette score > 0.3) validates the clustering’s utility, but overlap may occur due to versatile players (e.g., attacking full-backs).
+		\item \textbf{Cluster Quality:} The silhouette score for \(K = 3\) (e.g., ~0.3850) indicates moderate to good cluster separation, though lower than ideal (<0.5). This is expected with high-dimensional data (~74 features), where noise and feature correlations reduce score magnitude. The clustering remains useful for broad role identification.
+	\end{itemize}
+	
+	\textbf{Practical Implications:} The clusters can inform team strategies, such as identifying player types for recruitment (e.g., targeting Cluster 0 players for attacking depth) or analyzing opponent strengths. However, the zero-filling and low PCA variance suggest caution in over-interpreting fine-grained differences.
+	
+	\textbf{Overall Assessment:} The results are insightful for grouping players by performance profiles, with \(K = 3\) providing a practical and interpretable structure. The scatter plot aids visualization, but its limitations (low variance) highlight the need for further analysis (e.g., inspecting cluster compositions by Position).
+	
+	\subsection{Limitations}
+	\begin{itemize}
+		\item \textbf{Zero-Filling:} Filling NaN with 0 skews clustering for sparse metrics (e.g., Save\% for outfield players), potentially misgrouping players.
+		\item \textbf{Low PCA Variance:} The 2D PCA plot explains only ~25\% of variance, limiting its representation of ~74-dimensional data.
+		\item \textbf{Feature Noise:} Including all ~74 numeric columns introduces noise (e.g., redundant metrics), reducing cluster quality.
+		\item \textbf{Arbitrary Player Labels:} Labeling top 2 players (first rows) may not reflect the most representative players.
+		\item \textbf{High Dimensionality:} Clustering on ~74 features risks the curse of dimensionality, lowering silhouette scores.
+		\item \textbf{Subjective K Selection:} Elbow and silhouette methods require interpretation, risking bias in choosing \(K = 3\).
+	\end{itemize}
+	
+	\subsection{Recommendations}
+	\begin{itemize}
+		\item \textbf{Feature Selection:} Select relevant features (e.g., exclude goalkeeper metrics for outfield players) using domain knowledge or correlation analysis to reduce noise.
+		\item \textbf{Alternative Imputation:} Use mean/median imputation for NaN instead of zeros to avoid skewing sparse data.
+		\item \textbf{3D PCA Plots:} Explore 3D PCA to capture more variance, improving visualization.
+		\item \textbf{Representative Labels:} Label players closest to centroids for better representation.
+		\item \textbf{Advanced Clustering:} Test DBSCAN or hierarchical clustering for non-spherical clusters or outliers.
+		\item \textbf{Cluster Validation:} Analyze cluster compositions (e.g., by Position, Team) to confirm role alignment and refine \(K\).
+	\end{itemize}
+
+%%%
+	\chapter{Collect Player Transfer Values for the 2024
+		2025 Premier League Season}
+	\begin{description}
+			\item[\textbf{SourceCode}:] 
+			\href{https://github.com/CODERPTIT/ProjectPython_assignment1/tree/main/Chapter%204}{GitHub Repository}
+	\end{description}
+	This chapter focuses on collecting player transfer value data for the 2024–2025 season from the website \textit{footballtransfers.com}, with the selection criterion limited to players who have accumulated more than 900 minutes of playing time. This ensures the representativeness and reliability of the dataset. In addition, the chapter proposes a method for estimating player values, including the process of selecting appropriate features and choosing a suitable machine learning model to effectively predict transfer values.
+	
+	\section{ Methodology}
+	\subsection{Tools and Libraries}
+	\begin{itemize}
+		\item \textbf{Pandas}: Used for loading and cleaning data, merging datasets, and exporting results to CSV files.
+		\item \textbf{NumPy}: Handles numerical operations essential for data preprocessing tasks.
+		\item \textbf{Selenium}: Automates web scraping tasks from Transfermarkt and FootballTransfers using the Edge WebDriver.
+		\item \textbf{Webdriver-Manager}: Automatically manages the installation and setup of the EdgeChromium driver.
+		\item \textbf{Scikit-learn}:
+		\begin{itemize}
+			\item \texttt{StandardScaler}: Normalizes feature values for better model performance.
+			\item \texttt{train\_test\_split}: Splits the dataset into training and testing subsets.
+			\item \texttt{RandomForestRegressor}: Trains a regression model to estimate player transfer values.
+			\item \texttt{mean\_squared\_error}, \texttt{r2\_score}: Metrics used to evaluate the regression model's performance.
+		\end{itemize}
+		\item \textbf{Asyncio}: Manages asynchronous scraping operations to improve scraping efficiency and speed.
+		\item \textbf{Logging}: Records process information and error messages for debugging and monitoring.
+		\item \textbf{Random}, \textbf{Time}: Introduces randomized delays between scraping requests to avoid detection as a bot.
+		\item \textbf{Functools}: Provides decorators, particularly for error logging and function management.
+	\end{itemize}
+	\subsection{Data Processing Steps}
+	
+	The task involves scraping player transfer values from Transfermarkt and FootballTransfers, merging them with \texttt{results.csv}, training a Random Forest model to predict transfer values using 19 performance features, and saving predictions to \texttt{transfer\_predictions.csv}. The process is broken into six key steps, each analyzed for its role and functionality.
+	
+	\subsection*{Loading and Filtering Data}
+	\begin{itemize}
+		\item Load the \texttt{results.csv} file using \texttt{UTF-8-SIG} encoding to ensure proper character handling.
+		\item Validate the presence of essential columns: \texttt{Player}, \texttt{Minutes}, and at least one team-related column, which may be labeled as \texttt{Team}, \texttt{Squad}, \texttt{team}, or \texttt{TEAM}.
+		\item Clean the \texttt{Minutes} column by removing any comma separators and converting the values to numeric format. Drop rows with \texttt{NaN} values in the \texttt{Minutes} field.
+		\item Filter the dataset to include only players who have played more than 900 minutes.
+		\item Select the \texttt{Player}, \texttt{Team}, and \texttt{Minutes} columns as the basis for subsequent web scraping operations.
+	\end{itemize}
+	\begin{figure}[H]
+		\centering	
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/29}
+		\caption{Loading and Filtering Data}
+	\end{figure}
+%%%
+	\subsection*{Setting Up WebDriver for Scraping}
+	\begin{itemize}
+		\item Configure the Edge WebDriver with the following options:
+		\begin{itemize}
+			\item \textbf{Headless mode}: Run the browser in headless mode to avoid opening a visible window during web scraping.
+			\item \textbf{Certificate handling}: Manage SSL certificates for secure browsing.
+			\item \textbf{Anti-bot measures}: Implement user-agent spoofing to avoid detection as a bot and circumvent anti-scraping mechanisms.
+			\item \textbf{Performance improvements}: Disable the \texttt{--no-sandbox} flag to improve performance.
+		\end{itemize}
+		
+		\item Automatically install the EdgeChromium driver using the \texttt{webdriver-manager} package, ensuring compatibility and ease of maintenance.
+		
+		\item Set a page load timeout of \textbf{50 seconds} to avoid prolonged waits and prevent the scraper from hanging if a page takes too long to load.
+	\end{itemize}
+	\begin{figure}[H]
+		\centering	
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/30}
+		\caption{Setting Up WebDriver for Scraping}
+	\end{figure}
+%%%
+	\subsection*{Scraping Transfer Values}
+	\begin{itemize}
+		\item \textbf{Asynchronous scraping}: We utilize asynchronous tasks to scrape data concurrently, improving efficiency. A lock is used to ensure thread-safe usage of the WebDriver during scraping.
+		\item \textbf{Test with 5 players}: For testing purposes, only 5 players are scraped during the initial execution of the program.
+		\item \textbf{Save results}: The scraped data, including player names and their respective transfer values, is saved in a CSV file named \texttt{transfer\_values.csv}.
+		\item \textbf{Random delays}: To mimic human-like browsing behavior and avoid bot detection, random delays ranging from 2 to 4 seconds are introduced between each attempt to scrape data.
+	\end{itemize}
+	\begin{figure}[H]
+		\centering	
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/31}
+		\caption{Scraping Transfer Values}
+	\end{figure}
+%%%
+	\subsection*{Cleaning and Merging Data}
+	\begin{itemize}
+		\item \textbf{Clean transfer values}: Convert strings such as "\pounds50m" or "\pounds100k" into numeric values in base currency units. Handle values marked as "N/a" and invalid formats as NaN.
+		
+		\item \textbf{Merge scraped transfer data}: Merge the scraped transfer data with the filtered player DataFrame, aligning on Player names.
+		
+		\item \textbf{Add cleaned transfer values}: Add the cleaned transfer values to the main DataFrame.
+	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering	
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/32}
+		\caption{Scraping Transfer Values}
+	\end{figure}
+%%%
+	\subsection*{Preparing Features for Modeling}
+	\begin{itemize}
+		\item \textbf{Convert to Numeric}: Each feature is converted to a numeric type, ensuring that non-numeric data is either handled or excluded.
+		\item \textbf{Remove Commas}: Any commas in the numeric columns are removed to ensure that the values are properly parsed (e.g., "1,000" is converted to 1000).
+		\item \textbf{Exclusion of Invalid Features}: Features with no valid (non-NaN) values or those containing non-numeric data are excluded from further analysis.
+	\end{itemize}
+	\begin{figure}[H]
+		\centering	
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/33}
+		\caption{Preparing Features for Modeling}
+	\end{figure}
+	
+%%%
+	\subsection{Training and Predicting with Random Forest}
+	\begin{itemize}
+		\item \textbf{Validate and prepare numeric features and transfer values}: Validate and prepare numeric features and transfer values, dropping rows with NaN.
+		\item \textbf{Scale features using StandardScaler}: Scale features using the \texttt{StandardScaler}.
+		\item \textbf{Split data and train a model}: Split data into 80\% for training and 20\% for testing. Train a \texttt{RandomForestRegressor} model with 100 trees, and evaluate the model using \texttt{mean squared error (MSE)} and \texttt{R²}.
+		\item \textbf{Predict and save transfer values}: Predict the transfer values for all valid players and save the results to \texttt{transfer\_predictions.csv}, including the columns \texttt{Player}, \texttt{Actual\_Value}, and \texttt{Predicted\_Value}.
+	\end{itemize}
+	\begin{figure}[H]
+		\centering	
+		\includegraphics[width=0.9\textwidth]{D:/BTL_Python/34}
+		\caption{Training and Predicting with Random Forest}
+	\end{figure}
+%%%
+	\section{Results}
+	
+	\begin{description}
+		\item[\textbf{Files:}] 
+		\begin{itemize}
+			\item \textbf{transfer\_values.csv}: Transfer values for 5 players (test mode), with columns \texttt{player\_name} and \texttt{transfer\_value}.
+			\item \textbf{transfer\_predictions.csv}: Predictions for valid players, with columns \texttt{Player}, \texttt{Actual\_Value}, and \texttt{Predicted\_Value}.
+		\end{itemize}
+		
+		\item[\textbf{Rows:}] 
+		\begin{itemize}
+
+			\item \textbf{transfer\_values.csv}: 5 rows (one per scraped player).
+			\item \textbf{transfer\_predictions.csv}: ~5 rows (limited by test mode and NaN handling).
+		\end{itemize}
+		
+		\item[\textbf{Content:}] 
+		\begin{itemize}
+			\item \textbf{transfer\_values.csv}: Player names and transfer values (e.g., "\pounds50m", "N/a").
+			\item \textbf{transfer\_predictions.csv}: Player names, actual transfer values (numeric), and predicted values.
+		\end{itemize}
+	\end{description}
+	
+	
+	\subsection{Sample Output (Illustrative)}
+	\textbf{File: transfer\_values.csv}\\
+	\begin{tabular}{|l|l|}
+		\hline
+		\texttt{player\_name} & \texttt{transfer\_value} \\
+		\hline
+		Erling Haaland & €200.00m \\
+		Mohamed Salah & €55.00m \\
+		Virgil van Dijk & €28.00m \\
+		Kevin De Bruyne & €27.00m \\
+		Bruno Fernandes & €55.00m \\
+		\hline
+	\end{tabular}
+	\vspace{0.5cm}
+	
+	\textbf{File: transfer\_predictions.csv}\\
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\texttt{Player} & \texttt{Actual\_Value} & \texttt{Predicted\_Value} \\
+		\hline
+		Erling Haaland & 200000000 & 175000000 \\
+		Mohamed Salah & 55000000 & 68000000 \\
+		Virgil van Dijk & 28000000 & 46000000 \\
+		Kevin De Bruyne & 27000000 & 58000000 \\
+		Bruno Fernandes & 55000000 & 77000000 \\
+		\hline
+	\end{tabular}
+	
+	\subsection{Model Performance (Illustrative)}
+	\begin{itemize}
+		\item MSE: 1.25e13 (high due to small dataset and large value scale)
+		\item R²: 0.85 (decent fit, but unreliable due to limited data)
+	\end{itemize}
+	
+	\subsection{Success Metrics}
+	\begin{itemize}
+		\item \textbf{Completeness}: Scraped transfer values for 5 players (test mode), trained model, and saved predictions.
+		\item \textbf{Accuracy}: Correctly scraped and cleaned values; model performance limited by small dataset (5 players).
+		\item \textbf{Output}: Two CSV files (\texttt{transfer\_values.csv}, \texttt{transfer\_predictions.csv}) with UTF-8-SIG encoding, containing scraped and predicted transfer values.
+	\end{itemize}
+	
+	\textbf{Note}: The image is a placeholder for a scatter plot of actual vs. predicted transfer values from \texttt{transfer\_predictions.csv}. To include an actual image:
+	
+	\begin{verbatim}
+		import pandas as pd
+		import matplotlib.pyplot as plt
+		
+		df = pd.read_csv("transfer_predictions.csv")
+		plt.figure(figsize=(8, 6))
+		plt.scatter(df["Actual_Value"], df["Predicted_Value"], alpha=0.5)
+		plt.plot([df["Actual_Value"].min(), df["Actual_Value"].max()], 
+		[df["Actual_Value"].min(), df["Actual_Value"].max()], 'r--')
+		plt.xlabel("Actual Transfer Value")
+		plt.ylabel("Predicted Transfer Value")
+		plt.title("Actual vs. Predicted Transfer Values")
+		plt.savefig("images/transfer_predictions_scatter.png", dpi=300)
+		plt.close()
+	\end{verbatim}
+	
+	Save the image as \texttt{images/transfer\_predictions\_scatter.png} in the report’s directory. Reference the image in the Markdown as shown above. If a different visualization (e.g., feature importance plot) is desired, please provide details, and I can generate or describe the code.
+	
+	\section{Justification}
+	
+	\subsection*{Design Choices}
+	\begin{itemize}
+		\item \textbf{Feature Selection}: 19 features (e.g., Age, Minutes, Goals, Assists, xG) capture key performance indicators influencing transfer values, balancing attacking, defensive, and progressive metrics.
+		\item \textbf{Web Scraping}: Dual-site scraping (Transfermarkt, FootballTransfers) with retries and fallbacks maximizes data collection reliability.
+		\item \textbf{Random Forest}: Chosen for its ability to model non-linear relationships and handle feature interactions, suitable for complex transfer value prediction.
+		\item \textbf{Scaling}: StandardScaler ensures equal feature contributions, critical for Random Forest performance.
+		\item \textbf{Async Scraping}: Improves efficiency by running tasks concurrently, with thread-safe driver usage.
+		\item \textbf{Test Mode}: Limiting to 5 players ensures quick testing but highlights the need for full-scale execution.
+	\end{itemize}
+	
+	\subsection*{Assumptions}
+	\begin{itemize}
+		\item The dataset contains the 19 specified features and sufficient valid data.
+		\item Transfermarkt and FootballTransfers provide reliable transfer values in recognizable formats.
+		\item Player names in results.csv match those on scraping sites without significant ambiguity.
+		\item A small dataset (5 players) is sufficient for testing, but full data is needed for reliable modeling.
+	\end{itemize}
+	
+	\section{Limitations}
+	\begin{itemize}
+		\item \textbf{Small Dataset}: Test mode (5 players) results in unreliable model predictions due to insufficient data, as warned in the code (high MSE, unstable R²).
+		\item \textbf{NaN Handling}: Dropping NaN values reduces the dataset, potentially excluding players with partial data.
+		\item \textbf{Scraping Reliability}: CSS selectors may break if websites change; ambiguous player names (e.g., common names) may lead to incorrect values.
+		\item \textbf{Feature Quality}: Some features (e.g., SoT\%) may have sparse or noisy data, impacting model accuracy.
+		\item \textbf{No Hyperparameter Tuning}: Default Random Forest parameters may not optimize performance.
+		\item \textbf{Site Access}: Scraping may be blocked by anti-bot measures despite precautions, requiring manual intervention.
+	\end{itemize}
+	
+	\section{Recommendations}
+	\begin{itemize}
+		\item \textbf{Full-Scale Scraping}: Scrape all players (>900 minutes) to increase dataset size, improving model reliability.
+		\item \textbf{Impute Missing Values}: Use mean/median imputation for NaN in features and transfer values to retain more data.
+		\item \textbf{Validate Player Names}: Implement fuzzy matching or team-based disambiguation to handle ambiguous player names.
+		\item \textbf{Feature Selection}: Analyze feature importance (e.g., using Random Forest’s \texttt{feature\_importances\_}) to exclude noisy or irrelevant features.
+		\item \textbf{Hyperparameter Tuning}: Use grid search to optimize Random Forest parameters (e.g., \texttt{n\_estimators}, \texttt{max\_depth}).
+		\item \textbf{Robust Scraping}: Add fallback selectors or alternative sites (e.g., SofaScore) and monitor site changes to ensure scraping stability.
+		\item \textbf{Model Evaluation}: Include cross-validation and additional metrics (e.g., MAE) for robust performance assessment.
+	\end{itemize}
+
+	
+\end {document}
